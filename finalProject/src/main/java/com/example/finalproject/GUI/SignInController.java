@@ -1,5 +1,6 @@
 package com.example.finalproject.GUI;
 
+import com.example.finalproject.controller.GameController;
 import com.example.finalproject.controller.PlayerController;
 import com.example.finalproject.exceptions.DuplicateUsername;
 import com.example.finalproject.exceptions.InvalidPassword;
@@ -75,7 +76,7 @@ public class SignInController {
     }
 
     @FXML
-    void signin(ActionEvent event) throws IOException {
+    void signin(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
         PlayerController playerController = new PlayerController();
         Player signinPlayer = null;
         try {
@@ -95,6 +96,7 @@ public class SignInController {
             alert.setContentText("Enter your info correctly and if you don't have an account , you should sign up first!");
             alert.showAndWait();
         }
+        GameController.readAllPlayersFromDatabase();
         new Home().start((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
 
@@ -113,6 +115,7 @@ public class SignInController {
             playerController.insertPlayer(signup_username_txt.getText() , signup_password_txt.getText()); // mapid
             Player signupPlayer = playerController.login(signup_username_txt.getText() , signup_password_txt.getText());
             HomeController.player = signupPlayer;
+            GameController.readAllPlayersFromDatabase();
             new Home().start((Stage) ((Node) event.getSource()).getScene().getWindow());
         } catch (SQLException se) {
             throw new RuntimeException(se);

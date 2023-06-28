@@ -1,5 +1,7 @@
 package com.example.finalproject.GUI;
 
+import com.example.finalproject.controller.GameController;
+import com.example.finalproject.models.Map;
 import com.example.finalproject.models.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,10 +12,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class HomeController {
-    public static Player player;
-    //= new Player("ala" , "12345678" , 3,1,1,1);
+    public static Player player;//= new Player("ala" , "12345678" , 4,1,1,1);
     @FXML
     private Button login_btn;
 
@@ -41,8 +43,8 @@ public class HomeController {
     }
 
     @FXML
-    void playButton(ActionEvent event) throws IOException {
-        new Game().start((Stage) ((Node) event.getSource()).getScene().getWindow());
+    void playButton(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
+        new StartPage().start((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
 
     @FXML
