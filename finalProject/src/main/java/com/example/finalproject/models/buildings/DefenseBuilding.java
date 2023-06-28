@@ -1,10 +1,12 @@
 package com.example.finalproject.models.buildings;
 
+import javafx.scene.image.ImageView;
+
 abstract public class DefenseBuilding extends Building {
     private int attackPower;
     private int attackSpeed;
-    public DefenseBuilding(int health , int attackPower , int attackSpeed , int x , int y) {
-        super("defense", health , x , y);
+    public DefenseBuilding(int health , int attackPower , int attackSpeed , ImageView imageView) {
+        super("defense", health , imageView);
         this.attackPower = attackPower;
         this.attackSpeed = attackSpeed;
     }

@@ -1,7 +1,9 @@
 package com.example.finalproject.models.buildings;
 
+import javafx.scene.image.ImageView;
+
 abstract public class NormalBuilding extends Building {
-    public NormalBuilding(int health , int x , int y) {
-        super("normal", health , x ,y);
+    public NormalBuilding(int health , ImageView imageView) {
+        super("normal", health , imageView);
     }
 }

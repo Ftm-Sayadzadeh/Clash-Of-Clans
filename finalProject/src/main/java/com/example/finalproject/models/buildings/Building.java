@@ -1,18 +1,17 @@
 package com.example.finalproject.models.buildings;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-abstract public class Building extends ImageView {
+abstract public class Building {
     private String type;
     private int health;
+    private ImageView img;
 
-    public Building(String type , int health , double x , double y) {
+    public Building(String type , int health , ImageView imageView) {
         this.type = type;
         this.health = health;
-        this.setFitWidth(60);
-        this.setFitHeight(60);
-        this.setX(x);
-        this.setY(y);
+        img = imageView;
     }
 
     public String getType() {
@@ -29,5 +28,13 @@ abstract public class Building extends ImageView {
 
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public ImageView getImg() {
+        return img;
+    }
+
+    public void setImg(ImageView img) {
+        this.img = img;
     }
 }
