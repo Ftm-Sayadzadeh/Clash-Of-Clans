@@ -9,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import java.util.ArrayList;
 
 public class GameGroundController {
-    public int mapID;
+    public static int mapID;
     @FXML
     private ImageView airDefence1;
 
@@ -51,6 +51,9 @@ public class GameGroundController {
     private ImageView map4;
 
     @FXML
+    private ImageView map5;
+
+    @FXML
     private AnchorPane pane;
 
     public void setMap(){
@@ -76,25 +79,36 @@ public class GameGroundController {
             map2.setVisible(false);
             map3.setVisible(false);
             map4.setVisible(false);
+            map5.setVisible(false);
             map1.setVisible(true);
         }
         else if(mapID == 2){
             map1.setVisible(false);
             map3.setVisible(false);
             map4.setVisible(false);
+            map5.setVisible(false);
             map2.setVisible(true);
         }
         else if(mapID == 3){
             map1.setVisible(false);
             map2.setVisible(false);
             map4.setVisible(false);
+            map5.setVisible(false);
             map3.setVisible(true);
         }
         else if(mapID == 4){
             map1.setVisible(false);
             map2.setVisible(false);
             map3.setVisible(false);
+            map5.setVisible(false);
             map4.setVisible(true);
+        }
+        else if(mapID == 5){
+            map1.setVisible(false);
+            map2.setVisible(false);
+            map3.setVisible(false);
+            map4.setVisible(false);
+            map5.setVisible(true);
         }
     }
     private ArrayList<Building> setBuilding(){
