@@ -29,9 +29,9 @@ public class PlayerController {
             throw new DuplicateUsername();
         }
     }
-    public void insertPlayer(String username , String password ) throws SQLException, ClassNotFoundException {
+    public void insertPlayer(String username , String password , int mapID ) throws SQLException, ClassNotFoundException {
         MysqlConnection mySQLConnection = new MysqlConnection();
-        String sql = String.format("INSERT INTO `Players` (`username`, `password`, `level`, `numOfWins`, `numOfLosses`, `mapID`) VALUES ('%s', '%s','%s', %s, %s, %s)" , username , password , 1 , 0 , 0 ,  30 );
+        String sql = String.format("INSERT INTO `Players` (`username`, `password`, `level`, `numOfWins`, `numOfLosses`, `mapID`) VALUES ('%s', '%s','%s', %s, %s, %s)" , username , password , 1 , 0 , 0 ,  mapID );
         mySQLConnection.executeSQL(sql);
     }
 }
