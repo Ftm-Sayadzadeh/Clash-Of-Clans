@@ -1,5 +1,6 @@
 package com.example.finalproject.models.heros;
 
+import com.example.finalproject.models.buildings.Building;
 import javafx.scene.image.Image;
 
 public class Commander extends Hero{
@@ -13,8 +14,9 @@ public class Commander extends Hero{
     private final String img_die2 = this.getClass().getResource("/com/example/finalproject/img/Knight_03__DIE_009.png").toString();
     public Commander(double x, double y) {
 
-        super.setPower(3);
+        super.setPower(4);
         super.setSpeed(3);
+        super.setAttackSpeed(3);
         super.setHealth(70);
 
         setImage(new Image(img_walk1));
@@ -25,7 +27,9 @@ public class Commander extends Hero{
         setTranslateX(x);
         setTranslateY(y);
     }
-    public void attack(Hero hero) {
+    @Override
+    public void attack(Building b) {
+        sprite++;
         if (isAttacking) {
             if (sprite % 2 == 0)
                 this.setImage(new Image(img_attack1));
@@ -42,7 +46,9 @@ public class Commander extends Hero{
     }
     @Override
     public void walk() {
+        sprite++;
         if (!isAttacking) {
+            setTranslateX(getTranslateX() + getSpeed());
             if (sprite % 3 == 0)
                 this.setImage(new Image(img_walk1));
             else if (sprite % 3 == 1)

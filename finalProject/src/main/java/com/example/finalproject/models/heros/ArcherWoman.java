@@ -1,8 +1,11 @@
 package com.example.finalproject.models.heros;
 
+import com.example.finalproject.models.buildings.Building;
 import javafx.scene.image.Image;
 
-public class ArcherWoman extends Hero{public static int sprite;
+public class ArcherWoman extends Hero{
+    private int attackRadius = 30;
+    public static int sprite;
     private final String img_walk1 = this.getClass().getResource("/com/example/finalproject/img/Warrior_03__WALK_003.png").toString();
     private final String img_walk2 = this.getClass().getResource("/com/example/finalproject/img/Warrior_03__WALK_006.png").toString();
     private final String img_walk3 = this.getClass().getResource("/com/example/finalproject/img/Warrior_03__WALK_009.png").toString();
@@ -12,8 +15,9 @@ public class ArcherWoman extends Hero{public static int sprite;
     private final String img_die2 = this.getClass().getResource("/com/example/finalproject/img/Warrior_03__DIE_009.png").toString();
     public ArcherWoman(double x, double y) {
 
-        super.setPower(5);
+        super.setPower(10);
         super.setSpeed(4);
+        super.setAttackSpeed(5);
         super.setHealth(100);
 
         setImage(new Image(img_walk1));
@@ -24,7 +28,9 @@ public class ArcherWoman extends Hero{public static int sprite;
         setTranslateX(x);
         setTranslateY(y);
     }
-    public void attack(Hero hero) {
+    @Override
+    public void attack(Building b) {
+        sprite++;
         if (isAttacking) {
             if (sprite % 2 == 0)
                 this.setImage(new Image(img_attack1));
@@ -41,7 +47,9 @@ public class ArcherWoman extends Hero{public static int sprite;
     }
     @Override
     public void walk() {
+        sprite++;
         if (!isAttacking) {
+            setTranslateX(getTranslateX() + getSpeed());
             if (sprite % 3 == 0)
                 this.setImage(new Image(img_walk1));
             else if (sprite % 3 == 1)
@@ -54,5 +62,13 @@ public class ArcherWoman extends Hero{public static int sprite;
     @Override
     public Hero getCopy() {
         return new WonderfulWoman(getTranslateX() , getTranslateY());
+    }
+
+    public int getAttackRadius() {
+        return attackRadius;
+    }
+
+    public void setAttackRadius(int attackRadius) {
+        this.attackRadius = attackRadius;
     }
 }

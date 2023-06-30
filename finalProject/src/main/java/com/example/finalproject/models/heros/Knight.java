@@ -1,5 +1,6 @@
 package com.example.finalproject.models.heros;
 
+import com.example.finalproject.models.buildings.Building;
 import javafx.scene.image.Image;
 
 public class Knight extends Hero{
@@ -15,6 +16,7 @@ public class Knight extends Hero{
 
         super.setPower(2);
         super.setSpeed(3);
+        super.setAttackSpeed(1);
         super.setHealth(50);
 
         setImage(new Image(img_walk1));
@@ -26,7 +28,8 @@ public class Knight extends Hero{
         setTranslateY(y);
     }
     @Override
-    public void attack(Hero hero) {
+    public void attack(Building b) {
+        sprite++;
         if (isAttacking) {
             if (sprite % 2 == 0)
                 this.setImage(new Image(img_attack1));
@@ -44,7 +47,9 @@ public class Knight extends Hero{
 
     @Override
     public void walk() {
+        sprite++;
         if (!isAttacking) {
+            setTranslateX(getTranslateX() + getSpeed());
             if (sprite % 3 == 0)
                 this.setImage(new Image(img_walk1));
             else if (sprite % 3 == 1)

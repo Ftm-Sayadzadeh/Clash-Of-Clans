@@ -1,5 +1,6 @@
 package com.example.finalproject.models.heros;
 
+import com.example.finalproject.models.buildings.Building;
 import javafx.scene.image.Image;
 
 public class WonderfulWoman extends Hero{
@@ -14,8 +15,9 @@ public class WonderfulWoman extends Hero{
     private final String img_die2 = this.getClass().getResource("/com/example/finalproject/img/Warrior_02__DIE_009.png").toString();
     public WonderfulWoman(double x, double y) {
 
-        super.setPower(4);
-        super.setSpeed(4);
+        super.setPower(5);
+        super.setSpeed(6);
+        super.setAttackSpeed(4);
         super.setHealth(80);
 
         setImage(new Image(img_walk1));
@@ -26,7 +28,9 @@ public class WonderfulWoman extends Hero{
         setTranslateX(x);
         setTranslateY(y);
     }
-    public void attack(Hero hero) {
+    @Override
+    public void attack(Building b) {
+        sprite++;
         if (isAttacking) {
             if (sprite % 2 == 0)
                 this.setImage(new Image(img_attack1));
@@ -43,7 +47,9 @@ public class WonderfulWoman extends Hero{
     }
     @Override
     public void walk() {
+        sprite++;
         if (!isAttacking) {
+            setTranslateX(getTranslateX() + getSpeed());
             if (sprite % 3 == 0)
                 this.setImage(new Image(img_walk1));
             else if (sprite % 3 == 1)
