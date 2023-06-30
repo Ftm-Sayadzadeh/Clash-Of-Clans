@@ -52,7 +52,7 @@ public class StartPageController {
     @FXML
     void nextButton(ActionEvent event) throws IOException {
         GameGroundController.mapID = mapID;
-        new HeroSelectionPage().start((Stage) ((Node) event.getSource()).getScene().getWindow());
+        new HeroesSelectionPage().start((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
     private final String[] playersUsername = new String[GameController.players.size() - 1];
     private String currentChoice;
