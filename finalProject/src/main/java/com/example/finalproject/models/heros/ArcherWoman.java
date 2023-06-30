@@ -22,8 +22,8 @@ public class ArcherWoman extends Hero{
 
         setImage(new Image(img_walk1));
 
-        setFitWidth(163);
-        setFitHeight(92);
+        setFitWidth(99);
+        setFitHeight(65);
 
         setTranslateX(x);
         setTranslateY(y);

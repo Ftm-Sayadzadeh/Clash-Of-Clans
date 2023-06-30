@@ -1,6 +1,4 @@
 package com.example.finalproject.models.buildings;
-
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 abstract public class Building {
@@ -13,7 +11,9 @@ abstract public class Building {
         this.health = health;
         img = imageView;
     }
-
+    public boolean isAlive() {
+        return getHealth() >= 0;
+    }
     public String getType() {
         return type;
     }

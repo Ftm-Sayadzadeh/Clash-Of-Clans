@@ -12,8 +12,10 @@ public class GameGround extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/finalproject/gameGround.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 560);
-        //((GameGroundController)fxmlLoader.getController()).mapID = 1;
+        //GameGroundController.mapID = 5;
         ((GameGroundController)fxmlLoader.getController()).setMap();
+        ((GameGroundController)fxmlLoader.getController()).setHero();
+        ((GameGroundController)fxmlLoader.getController()).startGame();
         stage.setTitle("Game");
         stage.setScene(scene);
         stage.show();
