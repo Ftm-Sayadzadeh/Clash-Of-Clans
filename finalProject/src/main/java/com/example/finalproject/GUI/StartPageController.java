@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class StartPageController {
 
@@ -49,16 +50,19 @@ public class StartPageController {
     }
 
     @FXML
-    void nextButton(ActionEvent event) {
+    void nextButton(ActionEvent event) throws IOException {
         GameGroundController.mapID = mapID;
+        new HeroSelectionPage().start((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
-    private final String[] playersUsername = new String[GameController.players.size()];
+    private final String[] playersUsername = new String[GameController.players.size() - 1];
     private String currentChoice;
     private int mapID;
     public void setList() throws SQLException, ClassNotFoundException {
+        int j = 0 ;
         for (int i = 0 ; i< GameController.players.size() ; i++) {
-            if(GameController.players.get(i).getUsername() != HomeController.player.getUsername()) {
-                playersUsername[i] = GameController.players.get(i).getUsername();
+            if(!Objects.equals(GameController.players.get(i).getUsername(), HomeController.player.getUsername())) {
+                playersUsername[j] = GameController.players.get(i).getUsername() + " - level " + GameController.players.get(i).getLevel() ;
+                j++;
             }
         }
         playerList.getItems().addAll(playersUsername);

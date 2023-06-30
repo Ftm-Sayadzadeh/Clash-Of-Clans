@@ -14,7 +14,7 @@ public class StartPage extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/finalproject/startGame.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 560);
         ((StartPageController)fxmlLoader.getController()).setList();
-        stage.setTitle("Loading Game...");
+        stage.setTitle("Loading Map...");
         stage.setScene(scene);
         stage.show();
     }

@@ -103,7 +103,7 @@ public class SignInController {
             Player signupPlayer = playerController.login(signup_username_txt.getText() , signup_password_txt.getText());
             HomeController.player = signupPlayer;
             //--------------------------
-            GameController.readAllPlayersFromDatabase();
+            //GameController.readAllPlayersFromDatabase();
             //--------------------------
             new Home().start((Stage) ((Node) event.getSource()).getScene().getWindow());
         } catch (SQLException se) {
@@ -146,7 +146,7 @@ public class SignInController {
             alert.setContentText("Enter your info correctly and if you don't have an account , you should sign up first!");
             alert.showAndWait();
         }
-        GameController.readAllPlayersFromDatabase();
+        //GameController.readAllPlayersFromDatabase();
         new Home().start((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
     public void setPane(){

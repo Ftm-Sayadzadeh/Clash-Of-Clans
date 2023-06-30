@@ -1,7 +1,6 @@
 package com.example.finalproject.GUI;
 
 import com.example.finalproject.controller.GameController;
-import com.example.finalproject.models.Map;
 import com.example.finalproject.models.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +14,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class HomeController {
-    public static Player player;//= new Player("ala" , "12345678" , 4,1,1,1);
+    public static Player player; //= new Player("ala" , "12345678" , 4,1,1,1);
+
+    @FXML
+    private Button heroesInfo;
+
     @FXML
     private Button login_btn;
 
@@ -44,12 +47,17 @@ public class HomeController {
 
     @FXML
     void playButton(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
+        GameController.readAllPlayersFromDatabase();
         new StartPage().start((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
 
     @FXML
-    void showProfile(MouseEvent event) {
-
+    void showProfile(MouseEvent event) throws IOException {
+        new ProfilePanel().start((Stage) ((Node) event.getSource()).getScene().getWindow());
+    }
+    @FXML
+    void showHeroesInfo(ActionEvent event) throws IOException{
+        new HeroesInfoPage().start((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
 
     @FXML
@@ -63,11 +71,13 @@ public class HomeController {
             logout_btn.setVisible(true);
             profile_btn.setVisible(true);
             play_btn.setVisible(true);
+            heroesInfo.setVisible(true);
         }
         else{
             logout_btn.setVisible(false);
             profile_btn.setVisible(false);
             play_btn.setVisible(false);
+            heroesInfo.setVisible(false);
             signup_btn.setVisible(true);
             login_btn.setVisible(true);
         }

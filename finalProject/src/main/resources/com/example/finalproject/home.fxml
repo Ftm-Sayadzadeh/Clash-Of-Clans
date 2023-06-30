@@ -14,7 +14,7 @@
                 <Image url="@img/wallpaperbetter.jpg" />
             </image>
         </ImageView>
-        <Button fx:id="play_btn" layoutX="330.0" layoutY="206.0" mnemonicParsing="false" onAction="#playButton" prefHeight="39.0" prefWidth="238.0" style="-fx-background-color: FAF0E4; -fx-effect: dropshadow( gaussian , rgba(0, 0, 0, .2) , 10,0,0,1 );" text="PLAY NOW" visible="false">
+        <Button fx:id="play_btn" layoutX="330.0" layoutY="206.0" mnemonicParsing="false" onAction="#playButton" prefHeight="39.0" prefWidth="238.0" style="-fx-background-color: FAF0E4; -fx-effect: dropshadow( gaussian , rgba(0, 0, 0, .2) , 10,0,0,1 );" text="ATTACK" visible="false">
             <font>
                 <Font name="Bernard MT Condensed" size="20.0" />
             </font>
@@ -40,6 +40,11 @@
          </font>
       </Button>
       <Button fx:id="login_btn" layoutX="330.0" layoutY="155.0" mnemonicParsing="false" onAction="#logIn" prefHeight="39.0" prefWidth="238.0" style="-fx-background-color: FAF0E4; -fx-effect: dropshadow( gaussian , rgba(0, 0, 0, .2) , 10,0,0,1 );" text="LOG IN" visible="false">
+         <font>
+            <Font name="Bernard MT Condensed" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="heroesInfo" layoutX="330.0" layoutY="252.0" mnemonicParsing="false" onAction="#showHeroesInfo" prefHeight="39.0" prefWidth="238.0" style="-fx-background-color: FAF0E4; -fx-effect: dropshadow( gaussian , rgba(0, 0, 0, .2) , 10,0,0,1 );" text="HEROES INFO" visible="false">
          <font>
             <Font name="Bernard MT Condensed" size="20.0" />
          </font>
