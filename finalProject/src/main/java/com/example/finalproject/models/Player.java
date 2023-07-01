@@ -1,6 +1,6 @@
 package com.example.finalproject.models;
 
-public class Player {
+public class Player implements Comparable < Player> {
 
     private String username;
     private String password;
@@ -48,6 +48,15 @@ public class Player {
 
     public void setNumOfWins(int numOfWins) {
         this.numOfWins = numOfWins;
+        if(numOfWins == 2){
+            this.level = 2;
+        }
+        if(numOfWins == 4){
+            this.level = 3;
+        }
+        if(numOfWins == 6){
+            this.level = 4;
+        }
     }
 
     public int getNumOfLosses() {
@@ -64,5 +73,15 @@ public class Player {
 
     public void setMapID(int mapID) {
         this.mapID = mapID;
+    }
+
+    @Override
+    public int compareTo(Player p) {
+        if(this.level < p.level)
+            return 1;
+        else if(this.level > p.level )
+            return -1;
+        else
+            return 0;
     }
 }

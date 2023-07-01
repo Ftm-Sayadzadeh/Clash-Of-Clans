@@ -1,25 +1,20 @@
 package com.example.finalproject.GUI;
 
 import com.example.finalproject.controller.GameController;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import com.example.finalproject.models.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class StartPageController {
-
-    public StartPageController() throws SQLException, ClassNotFoundException {
-    }
     @FXML
     private ImageView back_btn;
 
@@ -37,90 +32,52 @@ public class StartPageController {
 
     @FXML
     private ImageView map5_img;
-
     @FXML
-    private Button next_btn;
-
-    @FXML
-    private ListView<String> playerList;
+    private Label randomPlayerInfo;
 
     @FXML
     void backHome(MouseEvent event) throws IOException {
         new Home().start((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
-
     @FXML
-    void nextButton(ActionEvent event) throws IOException {
+    void accept(ActionEvent event) throws IOException {
         GameGroundController.mapID = mapID;
         new HeroesSelectionPage().start((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
-    private final String[] playersUsername = new String[GameController.players.size() - 1];
-    private String currentChoice;
+    @FXML
+    void reject(ActionEvent event) {
+        setRandomMap();
+    }
     private int mapID;
-    public void setList() throws SQLException, ClassNotFoundException {
-        int j = 0 ;
-        for (int i = 0 ; i< GameController.players.size() ; i++) {
-            if(!Objects.equals(GameController.players.get(i).getUsername(), HomeController.player.getUsername())) {
-                playersUsername[j] = GameController.players.get(i).getUsername() + " - level " + GameController.players.get(i).getLevel() ;
-                j++;
-            }
+    public void setRandomMap() {
+        ArrayList<Player> players = GameController.players;
+        players.remove(HomeController.player);
+
+        Random random = new Random();
+        int randomInt = random.nextInt(0,players.size()-1);
+        mapID = players.get(randomInt).getMapID();
+
+        randomPlayerInfo.setText(players.get(randomInt).getUsername() + "  - Level "  + players.get(randomInt).getLevel());
+        map1_img.setVisible(false);
+        map2_img.setVisible(false);
+        map3_img.setVisible(false);
+        map4_img.setVisible(false);
+        map5_img.setVisible(false);
+        if(mapID == 1){
+            map1_img.setVisible(true);
         }
-        playerList.getItems().addAll(playersUsername);
-        playerList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s1, String s2) {
-                currentChoice = playerList.getSelectionModel().getSelectedItem();
-                int index = 0;
-                for (int i = 0; i < GameController.players.size(); i++) {
-                    // add all player except this player
-                    if (GameController.players.get(i).getUsername().equals(currentChoice)) {
-                        index = i;
-                        break;
-                    }
-                }
-                mapID = GameController.players.get(index).getMapID();
-                if(mapID == 1){
-                    map1_img.setVisible(false);
-                    map2_img.setVisible(false);
-                    map3_img.setVisible(false);
-                    map4_img.setVisible(false);
-                    map5_img.setVisible(false);
-                    map1_img.setVisible(true);
-                }
-                else if(mapID == 2){
-                    map1_img.setVisible(false);
-                    map2_img.setVisible(false);
-                    map3_img.setVisible(false);
-                    map4_img.setVisible(false);
-                    map5_img.setVisible(false);
-                    map2_img.setVisible(true);
-                }
-                else if(mapID == 3){
-                    map1_img.setVisible(false);
-                    map2_img.setVisible(false);
-                    map3_img.setVisible(false);
-                    map4_img.setVisible(false);
-                    map5_img.setVisible(false);
-                    map3_img.setVisible(true);
-                }
-                else if(mapID == 4){
-                    map1_img.setVisible(false);
-                    map2_img.setVisible(false);
-                    map3_img.setVisible(false);
-                    map4_img.setVisible(false);
-                    map5_img.setVisible(false);
-                    map4_img.setVisible(true);
-                }
-                else if(mapID == 5){
-                    map1_img.setVisible(false);
-                    map2_img.setVisible(false);
-                    map3_img.setVisible(false);
-                    map4_img.setVisible(false);
-                    map5_img.setVisible(false);
-                    map5_img.setVisible(true);
-                }
-            }
-        });
+        else if(mapID == 2){
+            map2_img.setVisible(true);
+        }
+        else if(mapID == 3){
+            map3_img.setVisible(true);
+        }
+        else if(mapID == 4){
+            map4_img.setVisible(true);
+        }
+        else if(mapID == 5){
+            map5_img.setVisible(true);
+        }
     }
 
 }

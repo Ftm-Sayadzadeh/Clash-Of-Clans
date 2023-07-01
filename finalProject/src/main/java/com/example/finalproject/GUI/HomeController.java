@@ -6,18 +6,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class HomeController {
-    public static Player player; //= new Player("ala" , "12345678" , 4,1,1,1);
+    public static Player player ;
+    //new Player("ala" , "12345678" , 1,1,1,1);
 
     @FXML
     private Button heroesInfo;
+    @FXML
+    private Button scores;
 
     @FXML
     private Button login_btn;
@@ -72,14 +77,38 @@ public class HomeController {
             profile_btn.setVisible(true);
             play_btn.setVisible(true);
             heroesInfo.setVisible(true);
+            scores.setVisible(true);
         }
         else{
             logout_btn.setVisible(false);
             profile_btn.setVisible(false);
             play_btn.setVisible(false);
             heroesInfo.setVisible(false);
+            scores.setVisible(false);
             signup_btn.setVisible(true);
             login_btn.setVisible(true);
         }
+    }
+    @FXML
+    private ListView<String> scoreBored;
+    @FXML
+    private Button closeScoreBored;
+    @FXML
+    void showScoreBored(ActionEvent event) throws SQLException, ClassNotFoundException {
+        scoreBored.setVisible(true);
+        closeScoreBored.setVisible(true);
+        ArrayList<String> playersUsername = new ArrayList<>();
+        GameController.readAllPlayersFromDatabase();
+        GameController.players.sort(Player::compareTo);
+        for (int i = 0 ; i< GameController.players.size() ; i++) {
+            playersUsername.add(GameController.players.get(i).getUsername() + " - level " + GameController.players.get(i).getLevel()) ;
+        }
+        scoreBored.getItems().addAll(playersUsername);
+    }
+
+    @FXML
+    void closeScoreBored(ActionEvent event) {
+        scoreBored.setVisible(false);
+        closeScoreBored.setVisible(false);
     }
 }
