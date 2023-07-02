@@ -13,7 +13,7 @@ public class StartPage extends Application {
     public void start(Stage stage) throws IOException, SQLException, ClassNotFoundException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/finalproject/startGame.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 560);
-        ((StartPageController)fxmlLoader.getController()).setList();
+        ((StartPageController)fxmlLoader.getController()).setRandomMap();
         stage.setTitle("Loading Map...");
         stage.setScene(scene);
         stage.show();

@@ -1,9 +1,9 @@
 package com.example.finalproject.GUI;
 
-import com.example.finalproject.models.heros.ArcherWoman;
-import com.example.finalproject.models.heros.Commander;
-import com.example.finalproject.models.heros.Knight;
-import com.example.finalproject.models.heros.WonderfulWoman;
+import com.example.finalproject.models.heroesAndWarEquipment.ArcherWoman;
+import com.example.finalproject.models.heroesAndWarEquipment.Commander;
+import com.example.finalproject.models.heroesAndWarEquipment.Knight;
+import com.example.finalproject.models.heroesAndWarEquipment.WonderfulWoman;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;

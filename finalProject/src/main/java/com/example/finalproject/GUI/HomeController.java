@@ -111,4 +111,8 @@ public class HomeController {
         scoreBored.setVisible(false);
         closeScoreBored.setVisible(false);
     }
+    @FXML
+    void exit(MouseEvent event) {
+        System.exit(0);
+    }
 }

@@ -1,6 +1,6 @@
 package com.example.finalproject.GUI;
 
-import com.example.finalproject.models.heros.*;
+import com.example.finalproject.models.heroesAndWarEquipment.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

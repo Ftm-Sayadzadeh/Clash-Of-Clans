@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class StartPageController {
@@ -42,6 +43,7 @@ public class StartPageController {
     @FXML
     void accept(ActionEvent event) throws IOException {
         GameGroundController.mapID = mapID;
+        GameGroundController.competitorPlayer = competitor;
         new HeroesSelectionPage().start((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
     @FXML
@@ -49,12 +51,14 @@ public class StartPageController {
         setRandomMap();
     }
     private int mapID;
+    private Player competitor;
     public void setRandomMap() {
         ArrayList<Player> players = GameController.players;
-        players.remove(HomeController.player);
+        players.removeIf(p -> Objects.equals(p.getUsername(), HomeController.player.getUsername()));
 
         Random random = new Random();
         int randomInt = random.nextInt(0,players.size()-1);
+        competitor = players.get(randomInt);
         mapID = players.get(randomInt).getMapID();
 
         randomPlayerInfo.setText(players.get(randomInt).getUsername() + "  - Level "  + players.get(randomInt).getLevel());

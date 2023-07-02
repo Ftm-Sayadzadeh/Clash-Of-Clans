@@ -1,5 +1,5 @@
 package com.example.finalproject.models;
-import com.example.finalproject.models.buildings.Building;
+import com.example.finalproject.models.buildingsAndWarEquipment.Building;
 
 import java.util.ArrayList;
 
