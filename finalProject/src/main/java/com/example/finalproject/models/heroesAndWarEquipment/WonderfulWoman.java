@@ -1,6 +1,7 @@
-package com.example.finalproject.models.heros;
+package com.example.finalproject.models.heroesAndWarEquipment;
 
-import com.example.finalproject.models.buildings.Building;
+import com.example.finalproject.controller.GameController;
+import com.example.finalproject.models.buildingsAndWarEquipment.Building;
 import javafx.scene.image.Image;
 
 public class WonderfulWoman extends Hero{
@@ -15,10 +16,11 @@ public class WonderfulWoman extends Hero{
     private final String img_die2 = this.getClass().getResource("/com/example/finalproject/img/Warrior_02__DIE_009.png").toString();
     public WonderfulWoman(double x, double y) {
 
-        super.setPower(5);
+        super.setPower(4);
         super.setSpeed(6);
         super.setAttackSpeed(4);
-        super.setHealth(80);
+        super.setHealth(40);
+        super.setAttackRadius(20);
 
         setImage(new Image(img_walk1));
 
@@ -30,12 +32,17 @@ public class WonderfulWoman extends Hero{
     }
     @Override
     public void attack(Building b) {
+        System.out.println("attack");
+        System.out.println(GameController.detectCollision(this,b));
         sprite++;
+        b.setHealth(b.getHealth() - this.getPower());
         if (isAttacking) {
-            if (sprite % 2 == 0)
+            if (sprite % 2 == 0) {
                 this.setImage(new Image(img_attack1));
-            else if (sprite % 2 == 1)
+            }
+            else if (sprite % 2 == 1){
                 this.setImage(new Image(img_attack2));
+            }
         }
     }
 
@@ -45,11 +52,32 @@ public class WonderfulWoman extends Hero{
             setImage(new Image(img_die2));
         }
     }
+
     @Override
-    public void walk() {
+    public void walk(Building building) {
+        double disCenterX = building.getBound().getCenterX() - this.getBound().getCenterX();
+        double disCenterY = building.getBound().getCenterY() - this.getBound().getCenterY();
+        double slope = Math.abs(disCenterY / disCenterX);
         sprite++;
         if (!isAttacking) {
-            setTranslateX(getTranslateX() + getSpeed());
+            //moving in best line base on distance
+            if(disCenterX > 0 && disCenterY > 0){
+                setTranslateX(getTranslateX() + getSpeed());
+                setTranslateY(getTranslateY() + (getSpeed()*slope));
+            }
+            else if(disCenterX < 0 && disCenterY < 0){
+                setTranslateX(getTranslateX() - getSpeed());
+                setTranslateY(getTranslateY() - (getSpeed()*slope));
+            }
+            else if(disCenterX > 0 && disCenterY < 0){
+                setTranslateX(getTranslateX() + getSpeed());
+                setTranslateY(getTranslateY() - (getSpeed()*slope));
+            }
+            else if(disCenterX < 0 && disCenterY > 0){
+                setTranslateX(getTranslateX() - getSpeed());
+                setTranslateY(getTranslateY() + (getSpeed()*slope));
+            }
+            //sprite images
             if (sprite % 3 == 0)
                 this.setImage(new Image(img_walk1));
             else if (sprite % 3 == 1)
@@ -57,10 +85,5 @@ public class WonderfulWoman extends Hero{
             else if (sprite % 3 == 2)
                 this.setImage(new Image(img_walk3));
         }
-    }
-
-    @Override
-    public Hero getCopy() {
-        return new WonderfulWoman(getTranslateX() , getTranslateY());
     }
 }

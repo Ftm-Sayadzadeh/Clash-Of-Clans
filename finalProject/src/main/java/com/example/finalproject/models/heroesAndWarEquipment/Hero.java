@@ -1,6 +1,7 @@
-package com.example.finalproject.models.heros;
+package com.example.finalproject.models.heroesAndWarEquipment;
 
-import com.example.finalproject.models.buildings.Building;
+import com.example.finalproject.models.buildingsAndWarEquipment.Building;
+import javafx.geometry.Bounds;
 import javafx.scene.image.ImageView;
 
 abstract public class Hero extends ImageView {
@@ -8,8 +9,9 @@ abstract public class Hero extends ImageView {
     private int power;
     private int speed;
     private int attackSpeed;
-    public boolean isAttacking = false;
+    public boolean isAttacking  = false;
     private float  progress;
+    private int attackRadius;
     public Hero(){}
     public boolean isAlive() {
         return getHealth() >= 0;
@@ -17,12 +19,7 @@ abstract public class Hero extends ImageView {
     public abstract void attack(Building b);
     public abstract void die();
 
-    public abstract void walk();
-
-    public abstract Hero getCopy();
-    public boolean detectCollision(Building h) {
-        return this.getBoundsInParent().intersects(h.getImg().getBoundsInParent());
-    }
+    public abstract void walk(Building building);
 
     //Getter and Setter ------------------------------------------------
 
@@ -64,5 +61,16 @@ abstract public class Hero extends ImageView {
 
     public void setAttackSpeed(int attackSpeed) {
         this.attackSpeed = attackSpeed;
+    }
+
+    public int getAttackRadius() {
+        return attackRadius;
+    }
+
+    public void setAttackRadius(int attackRadius) {
+        this.attackRadius = attackRadius;
+    }
+    public Bounds getBound(){
+        return this.localToScene(this.getBoundsInLocal());
     }
 }
