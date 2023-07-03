@@ -22,19 +22,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static java.lang.Thread.sleep;
-
 
 public class GameGroundController {
     boolean end = false;
     public static Player competitorPlayer;
     public static int mapID;
     public static ArrayList<Hero> heroes = new ArrayList<>();
-    private int numOfType = 0;
     private int numOfKnights = 0;
     private int numOfWonderfulWoman = 0;
     private int numOfCommander = 0;
     private int numOfArcherWoman = 0;
+    private int deadHeroes = 0;
     public static ArrayList<Hero> allHeroesInGround = new ArrayList<>();
     private ArrayList<Building> buildings = new ArrayList<>();
     private ArrayList<Building> defenceBuildings = new ArrayList<>();
@@ -363,6 +361,14 @@ public class GameGroundController {
         }
     }
 
+    private void sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void updateGame() {
         if (!end) {
             for (Hero h : allHeroesInGround) {
@@ -375,13 +381,9 @@ public class GameGroundController {
                         if (h instanceof Knight || h instanceof Commander || h instanceof WonderfulWoman) {
                             new Thread(() -> {
                                 while (h.isAlive() && b.isAlive()) {
-                                    //h.attack(b);
+                                    h.attack(b);
                                     System.out.println("Hero is Alive!");
-                                    try {
-                                        sleep(200);
-                                    } catch (InterruptedException e) {
-                                        throw new RuntimeException(e);
-                                    }
+                                    sleep(200);
                                 }
                                 if (!b.isAlive()) {
                                     buildings.remove(b);
@@ -404,15 +406,11 @@ public class GameGroundController {
                             new Thread(() -> {
                                 while (h.isAlive() && b.isAlive()) {
                                     //hero attack
-                                    //h.attack(b);
+                                    h.attack(b);
                                     //arrow translate
-                                    //arrow.attack(h,b);
+                                    arrow.attack(h, b);
 
-                                    try {
-                                        sleep(200);
-                                    } catch (InterruptedException e) {
-                                        throw new RuntimeException(e);
-                                    }
+                                    sleep(200);
                                 }
                                 if (!b.isAlive()) {
                                     buildings.remove(b);
@@ -420,7 +418,6 @@ public class GameGroundController {
                                         defenceBuildings.remove(b);
                                     }
                                 }
-                                ;
 
                                 h.isAttacking = false;
                                 arrow.setVisible(false);
@@ -489,56 +486,57 @@ public class GameGroundController {
 
     public void manageBuildingAttack() {
         if (!end) {
+            //do it when at least one hero in the ground
             if (allHeroesInGround.size() != 0) {
                 for (Building building : defenceBuildings) {
-                    System.out.println(building.getClass());
-                    Hero hero = this.chooseTheClosestHero(building);
-                    if (GameController.detectAttackRadius(hero, building)) {
-                        System.out.println(1);
-                        if (building instanceof ArcherTower) {
-                            ArrowOfArcherTower arrow = new ArrowOfArcherTower();
-                            pane.getChildren().add(arrow);
-                            arrow.setLayoutX(building.getBound().getCenterX());
-                            arrow.setLayoutY(building.getBound().getCenterY());
-                            arrow.setVisible(true);
-                            new Thread(() -> {
-                                while (hero.isAlive() && building.isAlive()) {
-                                    arrow.attack(hero, building);
-                                    try {
-                                        sleep(400);
-                                    } catch (InterruptedException e) {
-                                        throw new RuntimeException(e);
+                    // detect collision and attack
+                    if (!((DefenseBuilding) building).isAttacking) {
+                        Hero hero = this.chooseTheClosestHero(building);
+                        if (GameController.detectAttackRadius(hero, building)) {
+
+                            ((DefenseBuilding) building).isAttacking = true;
+
+                            if (building instanceof ArcherTower) {
+                                ArrowOfArcherTower arrow = new ArrowOfArcherTower();
+                                pane.getChildren().add(arrow);
+                                arrow.setLayoutX(building.getBound().getCenterX());
+                                arrow.setLayoutY(building.getBound().getCenterY());
+                                arrow.setVisible(true);
+                                new Thread(() -> {
+                                    while (hero.isAlive()) {
+                                        arrow.throwArrows(hero, building);
+                                        sleep(300);
                                     }
-                                }
-                                if (!hero.isAlive()) {
-                                    heroes.remove(hero);
-                                    allHeroesInGround.remove(hero);
-                                    hero.setVisible(false);
-                                    arrow.setVisible(false);
-                                }
-                            }).start();
-                        } else if (building instanceof Mortar) {
-                            Bomb bomb = new Bomb();
-                            pane.getChildren().add(bomb);
-                            bomb.setLayoutX(building.getBound().getCenterX());
-                            bomb.setLayoutY(building.getBound().getCenterY());
-                            bomb.setVisible(true);
-                            new Thread(() -> {
-                                while (hero.isAlive() && building.isAlive()) {
-                                    bomb.attack(hero, building);
-                                    try {
+                                    System.out.println("HEro Health " + hero.getHealth());
+                                    System.out.println("HEro is alive " + hero.isAlive());
+                                    if (!hero.isAlive()) {
+                                        deadHeroes ++;
+                                        allHeroesInGround.remove(hero);
+                                        arrow.setVisible(false);
+                                    }
+                                    ((DefenseBuilding) building).isAttacking = false;
+
+                                }).start();
+
+                            }else if (building instanceof Mortar) {
+                                Bomb bomb = new Bomb();
+                                pane.getChildren().add(bomb);
+                                bomb.setLayoutX(building.getBound().getCenterX());
+                                bomb.setLayoutY(building.getBound().getCenterY());
+                                bomb.setVisible(true);
+                                new Thread(() -> {
+                                    while (hero.isAlive() && building.isAlive()) {
+                                        bomb.attack(hero, building);
                                         sleep(200);
-                                    } catch (InterruptedException e) {
-                                        throw new RuntimeException(e);
                                     }
-                                }
-                                if (!hero.isAlive()) {
-                                    heroes.remove(hero);
-                                    allHeroesInGround.remove(hero);
-                                    hero.setVisible(false);
-                                    bomb.setVisible(false);
-                                }
-                            }).start();
+                                    if (!hero.isAlive()) {
+                                        deadHeroes ++;
+                                        allHeroesInGround.remove(hero);
+                                        bomb.setVisible(false);
+                                    }
+                                    ((DefenseBuilding) building).isAttacking = false;
+                                }).start();
+                            }
                         }
                     }
                 }
@@ -546,13 +544,18 @@ public class GameGroundController {
         }
     }
 
+    public boolean haveALivingHero(){
+        return deadHeroes >= heroes.size();
+    }
+
+
     public void playTimeline() {
         //manage hero--------------------------------
         Timeline heroesTimer = new Timeline();
         heroesTimer.setCycleCount(Timeline.INDEFINITE);
-        heroesTimer.getKeyFrames().add(new KeyFrame(Duration.seconds(0.2),
+        heroesTimer.getKeyFrames().add(new KeyFrame(Duration.seconds(0.3),
                 (ActionEvent e) -> {
-                    if (this.buildings.size() == 0 || heroes.size() == 0)
+                    if (this.buildings.size() == 0)
                         end = true;
                     updateGame();
                 }
@@ -561,10 +564,9 @@ public class GameGroundController {
         //mange defence buildings--------------------------------
         Timeline defenceBuildingsTimer = new Timeline();
         defenceBuildingsTimer.setCycleCount(Timeline.INDEFINITE);
-        defenceBuildingsTimer.getKeyFrames().add(new KeyFrame(Duration.seconds(0.2),
+        defenceBuildingsTimer.getKeyFrames().add(new KeyFrame(Duration.seconds(0.3),
                 (ActionEvent e) -> {
-                    System.out.println(heroes.size());
-                    if (this.buildings.size() == 0 || heroes.size() == 0)
+                    if (haveALivingHero())
                         end = true;
                     manageBuildingAttack();
                 }
@@ -591,12 +593,11 @@ public class GameGroundController {
                             pane.getScene().getWindow().hide();
                             gameResult.start(new Stage());
                             stop.stop();
-                        } catch (IOException | InterruptedException ex) {
+                        } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         }
                     }
-                    if (end && heroes.size() == 0) {
-                        System.out.println(heroes.size());
+                    else if (end && this.haveALivingHero()) {
                         heroesTimer.stop();
                         defenceBuildingsTimer.stop();
                         GameResultController.win = false;
@@ -611,7 +612,7 @@ public class GameGroundController {
                             pane.getScene().getWindow().hide();
                             gameResult.start(new Stage());
                             stop.stop();
-                        } catch (IOException | InterruptedException ex) {
+                        } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         }
                     }
