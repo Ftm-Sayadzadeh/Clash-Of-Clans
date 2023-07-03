@@ -12,6 +12,7 @@ public class ProfilePanel extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/finalproject/profilePanel.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 560);
+        ((ProfilePanelController)fxmlLoader.getController()).setData();
         stage.setTitle("panel");
         stage.setScene(scene);
         stage.show();
