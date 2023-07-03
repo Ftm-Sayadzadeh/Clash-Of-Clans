@@ -167,9 +167,9 @@ public class GameGroundController {
 
     private void setBuilding() {
         if (HomeController.player.getLevel() == 1) {
-            GoldStorage goldStorage11 = new GoldStorage(10, goldStorage2);
-            ClanCastle clanCastle11 = new ClanCastle(12, clanCastle1);
-            ArcherTower archerTower11 = new ArcherTower(20, 4, 1, archerTower1);
+            GoldStorage goldStorage11 = new GoldStorage(24, goldStorage2);
+            ClanCastle clanCastle11 = new ClanCastle(18 , clanCastle1);
+            ArcherTower archerTower11 = new ArcherTower(34, 4, 1, archerTower1);
             //------------------------
             buildings.add(goldStorage11);
             buildings.add(clanCastle11);
@@ -187,13 +187,13 @@ public class GameGroundController {
             buildings.add(archerTower22);
             buildings.add(townHall11);
         } else if (HomeController.player.getLevel() == 3) {
-            GoldStorage goldStorage11 = new GoldStorage(24, goldStorage2);
+            GoldStorage goldStorage11 = new GoldStorage(30, goldStorage2);
             ClanCastle clanCastle11 = new ClanCastle(20, clanCastle1);
-            ArcherTower archerTower11 = new ArcherTower(50, 5, 1, archerTower1);
-            ArcherTower archerTower22 = new ArcherTower(50, 5, 1, archerTower2);
+            ArcherTower archerTower11 = new ArcherTower(40, 5, 1, archerTower1);
+            ArcherTower archerTower22 = new ArcherTower(40, 5, 1, archerTower2);
             TownHall townHall11 = new TownHall(28, townHall1);
-            Mortar mortar11 = new Mortar(40, 5, 1, mortar1);
-            Mortar mortar22 = new Mortar(40, 5, 1, mortar2);
+            Mortar mortar11 = new Mortar(50, 5, 1, mortar1);
+            Mortar mortar22 = new Mortar(50, 5, 1, mortar2);
             //-------------------------
             buildings.add(goldStorage11);
             buildings.add(clanCastle11);
@@ -203,16 +203,16 @@ public class GameGroundController {
             buildings.add(mortar11);
             buildings.add(mortar22);
         } else if (HomeController.player.getLevel() >= 4) {
-            GoldStorage goldStorage11 = new GoldStorage(24, goldStorage2);
-            GoldStorage goldStorage22 = new GoldStorage(24, goldStorage1);
+            GoldStorage goldStorage11 = new GoldStorage(30, goldStorage2);
+            GoldStorage goldStorage22 = new GoldStorage(30, goldStorage1);
             ClanCastle clanCastle11 = new ClanCastle(20, clanCastle1);
             ClanCastle clanCastle22 = new ClanCastle(20, clanCastle2);
             ArcherTower archerTower11 = new ArcherTower(50, 10, 1, archerTower1);
             ArcherTower archerTower22 = new ArcherTower(50, 10, 1, archerTower2);
             TownHall townHall11 = new TownHall(24, townHall1);
             TownHall townHall22 = new TownHall(24, townHall2);
-            Mortar mortar11 = new Mortar(40, 5, 1, mortar1);
-            Mortar mortar22 = new Mortar(40, 5, 1, mortar2);
+            Mortar mortar11 = new Mortar(60, 5, 1, mortar1);
+            Mortar mortar22 = new Mortar(60, 5, 1, mortar2);
             //-------------------------
             buildings.add(goldStorage11);
             buildings.add(goldStorage22);
@@ -553,7 +553,7 @@ public class GameGroundController {
         //manage hero--------------------------------
         Timeline heroesTimer = new Timeline();
         heroesTimer.setCycleCount(Timeline.INDEFINITE);
-        heroesTimer.getKeyFrames().add(new KeyFrame(Duration.seconds(0.3),
+        heroesTimer.getKeyFrames().add(new KeyFrame(Duration.seconds(0.2),
                 (ActionEvent e) -> {
                     if (this.buildings.size() == 0)
                         end = true;
@@ -564,7 +564,7 @@ public class GameGroundController {
         //mange defence buildings--------------------------------
         Timeline defenceBuildingsTimer = new Timeline();
         defenceBuildingsTimer.setCycleCount(Timeline.INDEFINITE);
-        defenceBuildingsTimer.getKeyFrames().add(new KeyFrame(Duration.seconds(0.3),
+        defenceBuildingsTimer.getKeyFrames().add(new KeyFrame(Duration.seconds(0.2),
                 (ActionEvent e) -> {
                     if (haveALivingHero())
                         end = true;

@@ -17,13 +17,16 @@ public class ArrowOfArcherTower extends ImageView {
         this.setTranslateY(0);
     }
 
-    public void attack(Hero h, Building building) {
-        //System.out.println("building Arrow");
-        TranslateTransition transition = new TranslateTransition();
-        transition.setNode(this);
-        transition.setToX(h.getBound().getCenterX() - building.getBound().getCenterX());
-        transition.setToY(h.getBound().getCenterY() - building.getBound().getCenterY());
-        transition.play();
-        h.setHealth(h.getHealth() - 1);
+    public void throwArrows(Hero h, Building building) {
+//        System.out.println("building Arrow");
+        if(h.isAlive()) {
+            TranslateTransition transition = new TranslateTransition();
+            transition.setNode(this);
+            transition.setToX(h.getBound().getCenterX() - building.getBound().getCenterX());
+            transition.setToY(h.getBound().getCenterY() - building.getBound().getCenterY());
+//            transition.setCycleCount(3);
+            transition.play();
+            h.setHealth(h.getHealth() - 10);
+        }
     }
 }

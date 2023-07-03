@@ -17,9 +17,6 @@ public class DraggableMaker {
             node.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
         });
         node.setOnMouseReleased(mouseEvent -> {
-            System.out.println("true");
-            System.out.println( "X    " + h.getBound().getCenterX());
-            System.out.println( "Y    " +h.getBound().getCenterY());
             GameGroundController.allHeroesInGround.add(h);
         });
     }

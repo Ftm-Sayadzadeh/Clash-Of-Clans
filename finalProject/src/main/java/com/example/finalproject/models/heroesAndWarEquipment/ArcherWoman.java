@@ -19,7 +19,7 @@ public class ArcherWoman extends Hero{
         super.setSpeed(4);
         super.setAttackSpeed(5);
         super.setHealth(30);
-        super.setAttackRadius(80);
+        super.setAttackRadius(100);
 
         setImage(new Image(img_walk1));
 

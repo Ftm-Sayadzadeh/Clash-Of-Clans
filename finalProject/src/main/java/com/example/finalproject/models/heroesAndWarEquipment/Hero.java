@@ -14,6 +14,9 @@ abstract public class Hero extends ImageView {
     private int attackRadius;
     public Hero(){}
     public boolean isAlive() {
+        if(getHealth() < 0){
+            this.setVisible(false);
+        }
         return getHealth() >= 0;
     }
     public abstract void attack(Building b);

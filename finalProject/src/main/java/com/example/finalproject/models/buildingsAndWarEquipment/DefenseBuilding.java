@@ -6,6 +6,7 @@ abstract public class DefenseBuilding extends Building {
     private int attackPower;
     private int attackSpeed;
     private int attackRadiusCircle;
+    public boolean isAttacking  = false;
     public DefenseBuilding(int health , int attackPower , int attackSpeed , int defenseRadiusCircle , int attackRadiusCircle, ImageView imageView) {
         super("defense", health , defenseRadiusCircle , imageView);
         this.attackPower = attackPower;
