@@ -1,5 +1,8 @@
 package com.example.finalproject.GUI;
 
+import com.example.finalproject.controller.GameController;
+import com.example.finalproject.controller.PlayerController;
+import com.example.finalproject.models.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -9,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ProfilePanelController implements Initializable {
@@ -36,11 +40,19 @@ public class ProfilePanelController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        username_lbl.setText(HomeController.player.getUsername());
-        password_lbl.setText(HomeController.player.getPassword());
-        level_lbl.setText(Integer.toString(HomeController.player.getLevel()));
-        numOfWins_lbl.setText(Integer.toString(HomeController.player.getNumOfWins()));
-        numOfLosses_lbl.setText(Integer.toString(HomeController.player.getNumOfLosses()));
-        mapID_lbl.setText(Integer.toString(HomeController.player.getMapID()));
+        //read data first
+        PlayerController playerController = new PlayerController();
+        Player player;
+        try {
+            player = playerController.login(HomeController.player.getUsername() , HomeController.player.getPassword());
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        username_lbl.setText(player.getUsername());
+        password_lbl.setText(player.getPassword());
+        level_lbl.setText(Integer.toString(player.getLevel()));
+        numOfWins_lbl.setText(Integer.toString(player.getNumOfWins()));
+        numOfLosses_lbl.setText(Integer.toString(player.getNumOfLosses()));
+        mapID_lbl.setText(Integer.toString(player.getMapID()));
     }
 }
