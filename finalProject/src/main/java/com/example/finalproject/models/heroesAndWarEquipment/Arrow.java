@@ -17,20 +17,16 @@ public class Arrow extends ImageView {
         this.setTranslateY(0);
     }
     public void attack (Hero h , Building building){
-        //System.out.println("Aroooooows");
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(this);
         //transition.setDuration(Duration.seconds(2));
         //transition.setCycleCount(3);
 //        transition.setFromX(h.getBound().getCenterX());
 //        transition.setFromY(h.getBound().getCenterY());
-//        System.out.println("xx" + h.getBound().getCenterX());
-//        System.out.println("yy" + h.getBound().getCenterY());
 //        transition.setByX(building.getBound().getCenterX());
 //        transition.setByY(building.getBound().getCenterY());
         transition.setToX(building.getBound().getCenterX() - h.getBound().getCenterX());
         transition.setToY(building.getBound().getCenterY() - h.getBound().getCenterY());
         transition.play();
-        //System.out.println(building.getHealth());
     }
 }
