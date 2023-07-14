@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="560.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.GUI.HeroesSelectionPageController">
+   <children>
+      <ImageView fitHeight="616.0" fitWidth="1005.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/StartPage.jpg" />
+         </image>
+      </ImageView>
+      <Pane fx:id="knightPane" layoutX="204.0" layoutY="100.0" prefHeight="190.0" prefWidth="190.0" style="-fx-background-color: FAF0E4; -fx-background-radius: 30;">
+         <children>
+            <ImageView fitHeight="173.0" fitWidth="326.0" layoutX="-70.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/Knight_01__WALK_003.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="137.0" layoutY="134.0" mnemonicParsing="false" onAction="#addKnight" prefHeight="53.0" prefWidth="46.0" style="-fx-background-color: #88bf92; -fx-background-radius: 40;" text="+">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="commanderPane" layoutX="204.0" layoutY="319.0" prefHeight="190.0" prefWidth="190.0" style="-fx-background-color: FAF0E4; -fx-background-radius: 30;">
+         <children>
+            <ImageView fitHeight="173.0" fitWidth="326.0" layoutX="-66.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/Knight_03__WALK_003.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="137.0" layoutY="134.0" mnemonicParsing="false" onAction="#addCommander" prefHeight="53.0" prefWidth="46.0" style="-fx-background-color: #88bf92; -fx-background-radius: 40;" text="+">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="archerWomanPane" layoutX="430.0" layoutY="319.0" prefHeight="190.0" prefWidth="190.0" style="-fx-background-color: FAF0E4; -fx-background-radius: 30;">
+         <children>
+            <ImageView fitHeight="110.0" fitWidth="233.0" layoutX="3.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/Warrior_03__WALK_003.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="137.0" layoutY="134.0" mnemonicParsing="false" onAction="#addAWoman" prefHeight="53.0" prefWidth="46.0" style="-fx-background-color: #88bf92; -fx-background-radius: 40;" text="+">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="wonderfulWomanPane" layoutX="430.0" layoutY="100.0" prefHeight="190.0" prefWidth="190.0" style="-fx-background-color: FAF0E4; -fx-background-radius: 30;">
+         <children>
+            <ImageView fitHeight="124.0" fitWidth="233.0" layoutX="-8.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/Warrior_02__WALK_003.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="137.0" layoutY="134.0" mnemonicParsing="false" onAction="#addWWoman" prefHeight="53.0" prefWidth="46.0" style="-fx-background-color: #88bf92; -fx-background-radius: 40;" text="+">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane layoutX="50.0" layoutY="100.0" prefHeight="410.0" prefWidth="115.0" style="-fx-background-color: FAF0E4; -fx-background-radius: 30;">
+         <children>
+            <Pane layoutX="17.0" layoutY="15.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;">
+               <children>
+                  <ImageView fitHeight="80.0" fitWidth="190.0" layoutX="-39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/Knight_01__WALK_003.png" />
+                     </image>
+                  </ImageView>
+                  <Circle fill="#88bf92" layoutX="71.0" layoutY="72.0" radius="14.0" stroke="WHITE" strokeType="INSIDE" />
+                  <Label fx:id="knightNum" layoutX="69.0" layoutY="64.0" prefHeight="15.0" prefWidth="16.0" text="0">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="17.0" layoutY="115.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;">
+               <children>
+                  <ImageView fitHeight="80.0" fitWidth="190.0" layoutX="-39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/Knight_03__WALK_003.png" />
+                     </image>
+                  </ImageView>
+                  <Circle fill="#88bf92" layoutX="71.0" layoutY="72.0" radius="14.0" stroke="WHITE" strokeType="INSIDE" />
+                  <Label fx:id="commanderNum" layoutX="69.0" layoutY="65.0" prefHeight="15.0" prefWidth="16.0" text="0">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="17.0" layoutY="215.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;">
+               <children>
+                  <ImageView fitHeight="64.0" fitWidth="115.0" layoutX="-21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/Warrior_02__WALK_003.png" />
+                     </image>
+                  </ImageView>
+                  <Circle fill="#88bf92" layoutX="71.0" layoutY="72.0" radius="14.0" stroke="WHITE" strokeType="INSIDE" />
+                  <Label fx:id="wWomanNum" layoutX="69.0" layoutY="65.0" prefHeight="15.0" prefWidth="16.0" text="0">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="17.0" layoutY="315.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;">
+               <children>
+                  <ImageView fitHeight="64.0" fitWidth="115.0" layoutX="-21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/Warrior_03__WALK_003.png" />
+                     </image>
+                  </ImageView>
+                  <Circle fill="#88bf92" layoutX="71.0" layoutY="72.0" radius="14.0" stroke="WHITE" strokeType="INSIDE" />
+                  <Label fx:id="aWomanNum" layoutX="69.0" layoutY="64.0" prefHeight="15.0" prefWidth="16.0" text="0">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Line endX="-100.00001525878906" endY="-206.60000610351562" layoutX="285.0" layoutY="320.0" startX="-100.00001525878906" startY="177.39999389648438" stroke="#faf0e4" />
+      <Label fx:id="maxHeroes" layoutX="760.0" layoutY="480.0" prefHeight="28.0" prefWidth="62.0" textFill="#88bf92">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+         </font>
+      </Label>
+      <Text fill="#faf0e4" layoutX="652.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Number Of Heroes You Choose">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#faf0e4" layoutX="652.0" layoutY="464.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max Heroes Number You Can Choose">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+         </font>
+      </Text>
+      <Label fx:id="selectedHeroesCounter" layoutX="756.0" layoutY="415.0" prefHeight="28.0" prefWidth="62.0" text="0" textFill="#88bf92">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+         </font>
+      </Label>
+      <Text fill="#faf0e4" layoutX="192.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose your heroes to fight :)">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/icons8-go-back-48.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="errorPane" layoutX="663.0" layoutY="510.0" prefHeight="43.0" prefWidth="207.0" style="-fx-background-color: FAF0E4; -fx-background-radius: 30;">
+         <children>
+            <Label layoutX="29.0" layoutY="12.0" text="You cannot choose more heroes">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="closeErorPane" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#closeErrorPane" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/icons8-close-30.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Button layoutX="756.0" layoutY="18.0" mnemonicParsing="false" onAction="#startGame" style="-fx-background-color: FAF0E4; -fx-background-radius: 30;" text="ATTACK">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
