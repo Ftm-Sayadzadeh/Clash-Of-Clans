@@ -1,12 +1,14 @@
 package com.example.finalproject.GUI;
 
 import com.example.finalproject.controller.GameController;
+import com.example.finalproject.models.FireEffect;
 import com.example.finalproject.models.Map;
 import com.example.finalproject.models.Player;
 import com.example.finalproject.models.buildingsAndWarEquipment.*;
 import com.example.finalproject.models.heroesAndWarEquipment.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -104,8 +106,12 @@ public class GameGroundController {
 
     @FXML
     private Label num4;
+    @FXML
+    private Label levelNum_lbl;
 
     public void setMap() {
+        levelNum_lbl.setText("Level " + HomeController.player.getLevel());
+        //---------------------------
         clanCastle1.setVisible(false);
         clanCastle2.setVisible(false);
         goldStorage1.setVisible(false);
@@ -122,6 +128,7 @@ public class GameGroundController {
         for (Building building : map.getBuildings()) {
             building.getImg().setVisible(true);
         }
+        //---------------------------
         for (Building b : buildings) {
             if (Objects.equals(b.getType(), "defense"))
                 defenceBuildings.add(b);
@@ -184,7 +191,7 @@ public class GameGroundController {
             buildings.add(goldStorage11);
             buildings.add(clanCastle11);
             buildings.add(archerTower11);
-            buildings.add(archerTower22);
+            //buildings.add(archerTower22);
             buildings.add(townHall11);
         } else if (HomeController.player.getLevel() == 3) {
             GoldStorage goldStorage11 = new GoldStorage(30, goldStorage2);
@@ -382,10 +389,22 @@ public class GameGroundController {
                             new Thread(() -> {
                                 while (h.isAlive() && b.isAlive()) {
                                     h.attack(b);
-                                    System.out.println("Hero is Alive!");
+                                    //System.out.println("Hero is Alive!");
                                     sleep(200);
                                 }
                                 if (!b.isAlive()) {
+                                    //-------- fire effect----------
+                                    Platform.runLater(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            FireEffect fire = new FireEffect();
+                                            pane.getChildren().add(fire);
+                                            fire.setLayoutX(b.getBound().getMinX());
+                                            fire.setLayoutY(b.getBound().getMinY());
+                                            fire.setVisible(true);
+                                        }
+                                    });
+                                    //------------------------------
                                     buildings.remove(b);
                                     if (defenceBuildings.contains(b)) {
                                         defenceBuildings.remove(b);
@@ -413,6 +432,18 @@ public class GameGroundController {
                                     sleep(200);
                                 }
                                 if (!b.isAlive()) {
+                                    //-------- fire effect----------
+                                    Platform.runLater(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            FireEffect fire = new FireEffect();
+                                            pane.getChildren().add(fire);
+                                            fire.setLayoutX(b.getBound().getMinX());
+                                            fire.setLayoutY(b.getBound().getMinY());
+                                            fire.setVisible(true);
+                                        }
+                                    });
+                                    //------------------------------
                                     buildings.remove(b);
                                     if (defenceBuildings.contains(b)) {
                                         defenceBuildings.remove(b);

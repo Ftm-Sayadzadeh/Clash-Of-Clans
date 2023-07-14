@@ -41,22 +41,22 @@
             <Image url="@img/town_hall_15.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="archerTower2" fitHeight="56.0" fitWidth="51.0" layoutX="502.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="archerTower2" fitHeight="56.0" fitWidth="51.0" layoutX="498.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/archer_tower_21.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="clanCastle2" fitHeight="56.0" fitWidth="60.0" layoutX="453.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="clanCastle2" fitHeight="56.0" fitWidth="60.0" layoutX="427.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/clan_castle_1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="mortar2" fitHeight="44.0" fitWidth="59.0" layoutX="570.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="mortar2" fitHeight="44.0" fitWidth="59.0" layoutX="596.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/mortar.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="townHall1" fitHeight="56.0" fitWidth="55.0" layoutX="446.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="townHall1" fitHeight="56.0" fitWidth="55.0" layoutX="427.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/town_hall_15.png" />
          </image>
@@ -66,17 +66,17 @@
             <Image url="@img/mortar.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="clanCastle1" fitHeight="56.0" fitWidth="60.0" layoutX="647.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="clanCastle1" fitHeight="56.0" fitWidth="60.0" layoutX="612.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/clan_castle_1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="archerTower1" fitHeight="55.0" fitWidth="42.0" layoutX="360.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="archerTower1" fitHeight="55.0" fitWidth="42.0" layoutX="316.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/archer_tower_21.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="goldStorage2" fitHeight="56.0" fitWidth="51.0" layoutX="514.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="goldStorage2" fitHeight="56.0" fitWidth="51.0" layoutX="493.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/gold_storage_16.png" />
          </image>
@@ -146,5 +146,14 @@
       <Pane fx:id="draggableCommander" layoutX="100.0" layoutY="468.0" prefHeight="82.0" prefWidth="74.0" style="-fx-background-color: FAF0E4; -fx-background-radius: 20;" visible="false" />
       <Pane fx:id="draggableWWoman" layoutX="806.0" layoutY="468.0" prefHeight="82.0" prefWidth="74.0" style="-fx-background-color: FAF0E4; -fx-background-radius: 20;" visible="false" />
       <Pane fx:id="draggableAWoman" layoutX="726.0" layoutY="469.0" prefHeight="81.0" prefWidth="74.0" style="-fx-background-color: FAF0E4; -fx-background-radius: 20;" visible="false" />
+      <Pane layoutX="394.0" layoutY="-21.0" prefHeight="55.0" prefWidth="152.0" style="-fx-background-color: FAF0E4; -fx-background-radius: 50;">
+         <children>
+            <Label fx:id="levelNum_lbl" layoutX="39.0" layoutY="25.0" prefHeight="24.0" prefWidth="74.0" textFill="#000000f3">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
