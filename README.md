@@ -1,4 +1,4 @@
-# پروژه نهایی درس برنامه نویسی پیشرفته (Advanced Programming - Final Project)
+#Advanced Programming - Final Project
 
 استاد درس : دکتر رمضانی 
 
